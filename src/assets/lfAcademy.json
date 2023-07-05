@@ -1,0 +1,131 @@
+{
+    "roles": [
+        {
+            "id": 1,
+            "name": "Mentör"
+        },
+        {
+            "id": 2,
+            "name": "Takim Kaptanı"
+        },
+        {
+            "id": 3,
+            "name": "Takım Üyesi"
+        }
+    ],
+    "users": [
+        {
+            "id": 1,
+            "name": "Hüseyin",
+            "surname": "ÖZKAN",
+            "email": "huseyin.ozkan@lf8056.com.tr",
+            "password": "112358",
+            "fk_role_id": 1
+        },
+        {
+            "id": 2,
+            "name": "Ahmet",
+            "surname": "ATAN",
+            "email": "ahmet.atan@lf8056.com.tr",
+            "password": "123456",
+            "fk_role_id": 1
+        },
+        {
+            "id": 3,
+            "name": "Musa Çağdaş",
+            "surname": "GÜNDÜZ",
+            "email": "musa.gunduz@lf8056.com.tr",
+            "password": "123456",
+            "fk_role_id": 1
+        },
+        {
+            "id": 4,
+            "name": "Ferit Cem",
+            "surname": "ÖZBEK",
+            "email": "cem.ozbek@lf8056.com.tr",
+            "password": "123456",
+            "fk_role_id": 1
+        },
+        {
+            "id": 5,
+            "name": "Umut",
+            "surname": "KUTAY",
+            "email": "umut.kutay@lf8056.com.tr",
+            "password": "123456",
+            "fk_role_id": 1
+        }
+    ],
+    "education_category": [
+        {
+            "id": 1,
+            "name": "Yazılım"
+        },
+        {
+            "id": 2,
+            "name": "Elektronik"
+        },
+        {
+            "id": 3,
+            "name": "Makina"
+        },
+        {
+            "id": 4,
+            "name": "FRC"
+        },
+        {
+            "id": 5,
+            "name": "Tasarım"
+        }
+    ],
+
+    "lessons":[
+        {
+            "id": 1,
+            "name": "Web Temelleri",
+            "fk_education_category_id": 1
+        }
+    ],
+
+    "scorms":[
+        {
+            "id": 1,
+            "name": "Web Tasarımına Giriş - HTML",
+            "type": "video",
+            "url": "assest/education/videos/web/web01.mp4",
+            "count": 1,
+            "fk_lesson_id" : 1
+        },
+        {
+            "id": 1,
+            "name": "Web Tasarımına Giriş - CSS",
+            "type": "video",
+            "url": "assest/education/videos/web/web02.mp4",
+            "count": 1,
+            "fk_lesson_id" : 1
+        },
+        {
+            "id": 3,
+            "name": "Web Tasarımına Giriş - Bootstrap",
+            "type": "video",
+            "url": "assest/education/videos/web/web03.mp4",
+            "count": 1,
+            "fk_lesson_id" : 1
+        },
+        {
+            "id": 4,
+            "name": "Web Tasarımına Giriş - JS",
+            "type": "video",
+            "url": "assest/education/videos/web/web04.mp4",
+            "count": 1,
+            "fk_lesson_id" : 1
+        },
+        {
+            "id": 5,
+            "name": "Web Tasarımına Giriş - Jquery",
+            "type": "video",
+            "url": "assest/education/videos/web/web05.mp4",
+            "count": 1,
+            "fk_lesson_id" : 1
+        }
+    ]
+}

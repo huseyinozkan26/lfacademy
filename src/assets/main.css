@@ -55,3 +55,42 @@ body {
     width: 100%;
     height: 100%;
   }
+
+  .playbar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #333;
+    padding: 10px;
+    border-radius: 10px;
+  }
+  
+  .playbar-icon {
+    margin: 0 10px;
+    color: white;
+    cursor: pointer;
+    transition: transform 0.3s;
+  }
+  
+  .playbar-icon:hover {
+    transform: scale(1.1);
+  }
+  .playbar-hidden {
+    display: none;
+  }
+  .progress-text {
+    position: absolute;
+    color: white;
+    text-align: left;
+    left: 28rem;
+    margin-top: 0.9rem;
+    font-size: 1rem;
+  }
+  .volume-text {
+    position: absolute;
+    color: white;
+    text-align: left;
+    right: 8rem;
+    margin-top: 0.9rem;
+    font-size: 1rem;
+  }

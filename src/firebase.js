@@ -138,6 +138,24 @@ onAuthStateChanged(auth, (user) => {
     }
 });
 
+export const getProgress = async(scormValues) => {
+    try {
+        const db = getDatabase();
+        const userId = auth.currentUser.uid;
+        const lessonCode = scormValues.lessonCode;
+        const scormId = scormValues.key;
+        const adress = 'user_' + userId+"/scormValues/"+lessonCode+"/"+scormId+"/";
+        const userRef = ref(db, adress);
+
+        const snapshot = await get(userRef);
+        const currentData = snapshot.val() || {};
+        return currentData;
+    }catch (error) {
+        return error.message;
+    }
+
+}
+
 export const onScormChange = async (scormValues) => {
 
 
@@ -165,6 +183,7 @@ export const onScormChange = async (scormValues) => {
                         name: name,
                         lessonCode: lessonCode,
                         progress: scormValues.progress,
+                        progressSeconds: scormValues.progressSeconds
                     }
                 },
             },

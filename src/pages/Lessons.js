@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Card, CardHeader, Row, CardBody, Nav, NavItem, NavLink, CardFooter } from "reactstrap";
+import { Card, Row, CardBody, Nav, NavItem, NavLink, CardFooter } from "reactstrap";
 import { Link } from 'react-router-dom';
 import { getEducations } from "../firebase";
 
@@ -66,28 +66,26 @@ export default function Lessons() {
                             scorm.lessonCode = cardValue.lessonCode; // Yeni alanı ekliyoruz
                         });
                     }
-
-                    console.log(cardValue.scorms);
                     return (
                         <div
                             key={key}
                             className="col-md-4"
                         >
                             <Card>
-                                <CardHeader
+                                <img
+                                    alt="Sample"
+                                    src={cardValue.thumbnail ? cardValue.thumbnail : "http://lf8056.com.tr/assets/fotolar/lf_akademi.jpeg"}
+                                />
 
-                                >
-                                    {cardValue.name}
-                                </CardHeader>
                                 <CardBody>
-                                    içerik alanı
-
+                                    <h3>{cardValue.name}</h3>
+                                    <p>{cardValue.desc}</p>
                                 </CardBody>
                                 <CardFooter>
                                     <Link
                                         className="btn btn-warning"
                                         to="/scorms"
-                                        state={{ scorms: cardValue.scorms}}
+                                        state={{ scorms: cardValue.scorms }}
                                     >Ders Git</Link>
                                 </CardFooter>
                             </Card>

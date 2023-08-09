@@ -138,6 +138,19 @@ onAuthStateChanged(auth, (user) => {
     }
 });
 
+export const getScormValueByKey = async(key)=>{
+    try {
+        const db = getDatabase();
+        const adress = '/educations/education_yazilim/lessons/web/scorms';
+        const userRef = ref(db, adress);
+        const snapshot = await get(userRef);
+        const currentData = snapshot.val() || {};
+        return currentData;
+    }catch (error) {
+        return error.message;
+    }
+}
+
 export const getProgress = async(scormValues) => {
     try {
         const db = getDatabase();

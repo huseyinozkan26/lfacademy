@@ -1,47 +1,51 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { Badge } from "reactstrap";
+import { Badge, ListGroup, ListGroupItem } from "reactstrap";
+import { Link } from 'react-router-dom';
 import { getUserData } from "../firebase";
 
-export default function ContinueWatching(){
+export default function ContinueWatching() {
     const { user } = useSelector((state) => state.auth);
     const [userValues, setUserValues] = useState({});
     const [eduValues, setEduValues] = useState({});
     useEffect(() => {
         // getUserData fonksiyonunu çağırarak userValues state'ini güncelle
         getUserData(user.uid)
-          .then((promiseResult) => {
-            setUserValues({ ...promiseResult });
-            if(userValues.scormValues){
-                Object.keys(userValues.scormValues).map((keys)=>{
-                    setEduValues(userValues.scormValues[keys]);
-                    return true;
-                })
-            }
-          })
-          .catch((error) => {
-            console.error(error);
-          },[]);
-      }); 
-    return(
-        <>
-        <h5>Başladığım Eğitimler</h5>
-        <ul>
-
-        
-        {
-            Object.keys(eduValues).map((key)=>{
-                return(
-                    <li key={key}>{eduValues[key].name}
-                    <Badge
-                    color="primary"
-                    pils
-                    >    %{(eduValues[key].progress*100).toFixed(2)} tamamlandı</Badge>
-                    </li>
-                )
+            .then((promiseResult) => {
+                setUserValues({ ...promiseResult });
+                if (userValues.scormValues) {
+                    setEduValues(userValues.scormValues);
+                }
             })
-        }
-        </ul>
+            .catch((error) => {
+                console.error(error);
+            });
+    });
+    return (
+        <>
+            <h5>Başladığım Eğitimler</h5>
+            <ListGroup>
+
+                {
+                    Object.keys(eduValues).map((key) => {
+                     
+                        var totalProcess = 0;
+                        var sayac = 0;
+                        Object.keys(eduValues[key]).map((keys) => {
+                            totalProcess = eduValues[key][keys].progress;
+                            sayac++;
+                        })
+                        return (
+                            <Link 
+                            className="list-group-item"
+                          
+                            >
+                                   {key}  | <Badge color="primary">%{((totalProcess*100) / sayac).toFixed(2)} tamamlandı</Badge>
+                            </Link>  
+                        )
+                    })
+                }
+            </ListGroup>
         </>
     )
 }

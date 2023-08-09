@@ -1,33 +1,16 @@
-import React, { useEffect, useState } from "react";
-import { toast } from "react-hot-toast";
+import React, {useState } from "react";
 import ReactPlayer from "react-player";
-import { auth, getUserData, onScormChange } from "../firebase";
+import {onScormChange } from "../firebase";
 
 const VideoPlayer = ( scorm ) => {
   const [videoProgress, setVideoProgress] = useState(0);
-  const [userValues, setUserValues] = useState({});
-
-
-  const users = JSON.parse(localStorage.getItem("user"));
-
-
-  useEffect (()=>{
-    getUserData(users.uid).then((promiseResult)=>{
-      setUserValues({...promiseResult});
-
-    }).catch((error)=>{
-      toast.error(error.message);
-    })
-  },[users.uid]);
-
-
 
 
   const handleProgress = (progress) => {
     setVideoProgress(progress.played);
-    
     const scormProgress = {
       key: scorm.scormData.key,
+      name: scorm.scormData.name,
       lessonCode: scorm.scormData.lessonCode,
       progress: progress.played
     }

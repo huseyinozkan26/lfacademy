@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Row, Col, Card, CardHeader, CardBody } from 'reactstrap'
 import UserTags from '../pages/UserTags'
 import Lessons from '../pages/Lessons'
+import ContinueWatching from '../pages/ContinueWatching'
 
 class Dashboard extends Component {
   render() {
@@ -24,7 +25,7 @@ class Dashboard extends Component {
                 <h4>Eğitimlerim</h4>
               </CardHeader>
               <CardBody>
-                Burada aldığı dersler ve tamamlama yüzdesi gelsin
+                <ContinueWatching/>
               </CardBody>
             </Card>
           </Col>

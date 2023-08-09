@@ -16,6 +16,7 @@ export default function Scorms() {
            
             key: scormId,
             url: scorms[scormId].url,
+            name: scorms[scormId].name,
             lessonCode: scorms[scormId].lessonCode
         }
         setScorm(scormValue);

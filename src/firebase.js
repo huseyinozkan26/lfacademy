@@ -146,6 +146,7 @@ export const onScormChange = async (scormValues) => {
         const userId = auth.currentUser.uid;
         const lessonCode = scormValues.lessonCode;
         const scormId = scormValues.key;
+        const name = scormValues.name;
 
         // Önce mevcut verileri alıyoruz
         const userRef = ref(db, 'user_' + userId);
@@ -159,9 +160,12 @@ export const onScormChange = async (scormValues) => {
                 ...currentData.scormValues,
                 [lessonCode]: {
                     ...currentData.scormValues?.[lessonCode],
-                    scormId: scormId,
-                    lessonCode: lessonCode,
-                    [scormId]: scormValues.progress,
+                    [scormId]: {
+                        scormId: scormId,
+                        name: name,
+                        lessonCode: lessonCode,
+                        progress: scormValues.progress,
+                    }
                 },
             },
         };

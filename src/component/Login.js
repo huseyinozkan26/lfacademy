@@ -8,7 +8,7 @@ import { login as loginHandle, logout as logoutHandle } from "../store/auth"
 export default function Login() {
     const dispath = useDispatch()
     const [email, setEmail] = useState('')
-    const [password, setPassword] = useState(' ')
+    const [password, setPassword] = useState('')
 
     const handleSubmit = async e => {
         e.preventDefault()

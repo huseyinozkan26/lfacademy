@@ -8,14 +8,12 @@ import { login as loginHandle, logout as logoutHandle } from "./store/auth"
 
 
 const firebaseConfig = {
-    apiKey: "AIzaSyBWBfR19jYnMGrqm0hpHWcaEE2byjl1wXQ",
-    authDomain: "lf8056academy.firebaseapp.com",
-    projectId: "lf8056academy",
-    storageBucket: "lf8056academy.appspot.com",
-    messagingSenderId: "798569746757",
-    appId: "1:798569746757:web:2ec89d6a5e98fbd908ee2c",
-    databaseURL: "https://lf8056academy-default-rtdb.firebaseio.com/"
-
+    apiKey: process.env.REACT_APP_API_KEY,
+    authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+    projectId: process.env.REACT_APP_PROJECT_ID,
+    storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+    messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+    appId: process.env.REACT_APP_APP_ID
 };
 
 const app = initializeApp(firebaseConfig);
@@ -138,7 +136,7 @@ onAuthStateChanged(auth, (user) => {
     }
 });
 
-export const getScormValueByKey = async(key)=>{
+export const getScormValueByKey = async (key) => {
     try {
         const db = getDatabase();
         const adress = '/educations/education_yazilim/lessons/web/scorms';
@@ -146,24 +144,24 @@ export const getScormValueByKey = async(key)=>{
         const snapshot = await get(userRef);
         const currentData = snapshot.val() || {};
         return currentData;
-    }catch (error) {
+    } catch (error) {
         return error.message;
     }
 }
 
-export const getProgress = async(scormValues) => {
+export const getProgress = async (scormValues) => {
     try {
         const db = getDatabase();
         const userId = auth.currentUser.uid;
         const lessonCode = scormValues.lessonCode;
         const scormId = scormValues.key;
-        const adress = 'user_' + userId+"/scormValues/"+lessonCode+"/"+scormId+"/";
+        const adress = 'user_' + userId + "/scormValues/" + lessonCode + "/" + scormId + "/";
         const userRef = ref(db, adress);
 
         const snapshot = await get(userRef);
         const currentData = snapshot.val() || {};
         return currentData;
-    }catch (error) {
+    } catch (error) {
         return error.message;
     }
 

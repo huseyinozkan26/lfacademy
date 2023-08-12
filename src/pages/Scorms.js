@@ -9,11 +9,11 @@ export default function Scorms() {
 
     const [scormId, setScormId] = useState("");
     const [scorm, setScorm] = useState({});
+    
 
     const handleNavLinkClick = (scormId) => {
         setScormId(scormId);
         const scormValue = {
-           
             key: scormId,
             url: scorms[scormId].url,
             name: scorms[scormId].name,

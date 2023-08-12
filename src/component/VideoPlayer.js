@@ -12,6 +12,7 @@ const VideoPlayer = (scorm) => {
 
   const playerRef = React.useRef();
 
+
   useEffect(() => {
     function handleContextMenu(e) {
       e.preventDefault(); // Sağ tıklama menüsünü engelle

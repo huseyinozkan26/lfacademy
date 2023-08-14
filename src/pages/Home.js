@@ -1,4 +1,3 @@
-import React, { Component } from 'react'
 import { Container } from 'reactstrap'
 import Dashboard from '../component/Dashboard'
 

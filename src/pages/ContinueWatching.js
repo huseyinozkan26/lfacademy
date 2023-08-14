@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { Badge, ListGroup, ListGroupItem } from "reactstrap";
+import { Badge, ListGroup } from "reactstrap";
 import { Link } from 'react-router-dom';
 import { getUserData } from "../firebase";
 
@@ -38,7 +38,6 @@ export default function ContinueWatching() {
                         return (
                             <Link 
                             className="list-group-item"
-                          
                             >
                                    {key}  | <Badge color="primary">%{((totalProcess*100) / sayac).toFixed(2)} tamamlandı</Badge>
                             </Link>  

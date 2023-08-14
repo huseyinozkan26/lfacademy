@@ -11,6 +11,7 @@ import Scorms from './pages/Scorms';
 
 function App() {
   const { user } = useSelector(state => state.auth)
+  console.log(user)
   return (
     <div className="App" color='dark' >
       <Navi></Navi>

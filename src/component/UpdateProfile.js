@@ -18,7 +18,6 @@ export default function UpdateProfile() {
     const userData = { ...user };
 
     useEffect(() => {
-        // getUserData fonksiyonunu sadece bir kez çalıştırmak için bu etkiyi burada kullanıyoruz.
         getUserData(userData.uid)
             .then((promiseResult) => {
                 setFormData((prevData) =>

@@ -8,9 +8,6 @@ import {
     Nav,
     NavItem,
     UncontrolledDropdown,
-    DropdownToggle,
-    DropdownMenu,
-    DropdownItem,
     Container,
 } from 'reactstrap';
 

@@ -1,9 +1,9 @@
-import { Form, FormGroup, Input, Button, Label, DropdownItem, DropdownToggle, DropdownMenu } from 'reactstrap';
+import { Form, FormGroup, Input, Button, Label, Alert, Card, CardBody, CardFooter } from 'reactstrap';
 import { useState } from 'react';
 import { Link } from 'react-router-dom'
-import { signIn,logOut } from '../firebase';
-import { useDispatch, useSelector } from 'react-redux';
-import { login as loginHandle, logout as logoutHandle } from "../store/auth"
+import { signIn } from '../firebase';
+import { useDispatch } from 'react-redux';
+import { login as loginHandle } from "../store/auth"
 
 export default function Login() {
     const dispath = useDispatch()
@@ -18,45 +18,12 @@ export default function Login() {
         }
     }
 
-    const handleLogout = async e => {
-        e.preventDefault()
-        await logOut()
-        dispath(logoutHandle())
-    }
+    return (
+        <>
+            <Alert color='danger'>Giriş yapmadınız</Alert>
 
-    const { user } = useSelector(state => state.auth)
-
-    if (user) {
-        return (
-            <>
-                <DropdownToggle nav caret className='btn btn-default'>
-                    {(user.displayName) ? user.displayName : user.email}
-                </DropdownToggle>
-                <DropdownMenu end>
-                    <DropdownItem>
-                        <Link className='nav-link' to="/profile">Profil</Link>
-                    </DropdownItem>
-                    <DropdownItem divider />
-                    <DropdownItem 
-                    className='btn btn-danger'
-                    onClick={handleLogout}
-                    >
-                        Çıkış Yap
-                    </DropdownItem>
-                </DropdownMenu>
-            </>
-        )
-    } else {
-
-
-        return (
-            <>
-
-                <DropdownToggle nav caret className='btn btn-default'>
-                    Giriş Yap
-                </DropdownToggle>
-                <DropdownMenu end>
-
+            <Card>
+                <CardBody>
                     <Form
                         className='row'
                         onSubmit={handleSubmit}
@@ -71,7 +38,7 @@ export default function Login() {
                                 onChange={e => setEmail(e.target.value)}
                             />
                             <Label for="exampleEmail">
-                                Email
+                                E-Posta
                             </Label>
                         </FormGroup>
                         {' '}
@@ -85,7 +52,7 @@ export default function Login() {
                                 onChange={e => setPassword(e.target.value)}
                             />
                             <Label for="examplePassword">
-                                Password
+                                Şifre
                             </Label>
                         </FormGroup>
                         {' '}
@@ -98,15 +65,14 @@ export default function Login() {
                             </Button>
                         </FormGroup>
                     </Form>
+                </CardBody>
+                <CardFooter
+            
+                >
+                    LF Akademi hesabun yok ise  <Link className='btn btn-danger' to="/register">Kayıt Ol</Link>
+                </CardFooter>
+            </Card>
 
-
-                    <DropdownItem divider />
-                    <DropdownItem>
-                        <Link className='nav-link' to="/register">Kayıt Ol</Link>
-                    </DropdownItem>
-                </DropdownMenu>
-            </>
-        )
-    }
-
+        </>
+    )
 }

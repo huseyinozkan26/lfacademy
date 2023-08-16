@@ -1,13 +1,13 @@
-import toast, { Toaster } from 'react-hot-toast';
+import { Toaster } from 'react-hot-toast';
 import { Routes, Route } from 'react-router-dom';
 import UpdateProfile from './component/UpdateProfile';
 import Home from "./pages/Home"
 import Navi from "./base/Navi"
 import Register from "./pages/Register";
-import { Alert, Container } from 'reactstrap';
+import { Container } from 'reactstrap';
+import LoginForm from './component/LoginForm'
 import { useSelector } from 'react-redux'
 import Scorms from './pages/Scorms';
-
 
 function App() {
   const { user } = useSelector(state => state.auth)
@@ -30,7 +30,7 @@ function App() {
             <>
               <Route path='register/' element={<Register />} />
               <Route path='*' element={
-                <Alert color='danger'>Giriş yapmadınız</Alert>
+                <LoginForm/>
               } />
             </>
           )}

@@ -38,6 +38,7 @@ export default function ContinueWatching() {
                         return (
                             <Link 
                             className="list-group-item"
+                            key={key}
                             >
                                    {key}  | <Badge color="primary">%{((totalProcess*100) / sayac).toFixed(2)} tamamlandı</Badge>
                             </Link>  

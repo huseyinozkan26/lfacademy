@@ -167,6 +167,34 @@ export const getProgress = async (scormValues) => {
 
 }
 
+export const onLiveStart = async (liveValues) => {
+    console.log(liveValues);
+    try {
+        const db = getDatabase();
+        // Önce mevcut verileri alıyoruz
+        const strLessonName = liveValues.lesson_name;
+        console.log(strLessonName);
+        const userRef = ref(db, 'livelessons/');
+        const snapshot = await get(userRef);
+        const currentData = snapshot.val() || {};
+    
+        const newData = {
+            ...currentData,
+            [strLessonName]:{
+                lesson_name: liveValues.lesson_name,
+                teacher: liveValues.teacher,
+                active: liveValues.active
+            }
+        };
+        console.log(newData);
+        // Oluşturduğumuz yeni verileri set fonksiyonu ile güncelliyoruz
+        set(userRef, newData);
+    } catch (error) {
+        console.log(error.message);
+        toast.error(error.message);
+    }
+}
+
 export const onScormChange = async (scormValues) => {
 
 

@@ -12,10 +12,10 @@ class Dashboard extends Component {
           <Col md>
             <Card>
               <CardHeader>
-                <h4>Künye</h4>
+                <h5>Profil</h5>
               </CardHeader>
               <CardBody color='info'>
-                <UserTags/>
+                <UserTags />
               </CardBody>
             </Card>
           </Col>
@@ -25,7 +25,7 @@ class Dashboard extends Component {
                 <h4>Eğitimlerim</h4>
               </CardHeader>
               <CardBody>
-                <ContinueWatching/>
+                <ContinueWatching />
               </CardBody>
             </Card>
           </Col>
@@ -35,7 +35,7 @@ class Dashboard extends Component {
             <Card>
               <CardHeader><h4>LF Akademi dersleri</h4></CardHeader>
               <CardBody>
-               <Lessons></Lessons>
+                <Lessons></Lessons>
               </CardBody>
             </Card>
           </Col>

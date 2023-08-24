@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { getEducations } from "../firebase";
 
 export default function Lessons() {
-    const [categorie, setCategorie] = useState("frc"); // Başlangıçta "frc" olarak ayarlayabilirsiniz.
+    const [categorie, setCategorie] = useState(""); // Başlangıçta "" olarak ayarlayabilirsiniz.
     const [lessonValues, setLessonsValues] = useState({});
     const [lessonCards, setLessonCards] = useState({});
 

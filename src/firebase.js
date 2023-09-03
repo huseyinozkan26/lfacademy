@@ -112,10 +112,26 @@ export const getEducations = async (categorie) => {
         if (snapshoot.exists) {
             return_data = snapshoot.val()
         } else {
-            return_data = { error: "Kayıtlı dersz" }
+            return_data = { error: "Kayıtlı ders yok." }
         }
     }).catch((error) => {
         return_data = { error: error }
+    })
+    return return_data;
+}
+
+
+export const getLiveLessons = async (lessonId) => {
+    const dbRef = ref(getDatabase());
+    let return_data = [];
+    await get(child(dbRef,'livelessons')).then((snapshoot)=>{
+        if(snapshoot.exists){
+            return_data = snapshoot.val();
+        }else{
+            return_data = {error:"Canlı ders yok."}
+        }
+    }).catch((error)=>{
+        return_data = {error}
     })
     return return_data;
 }
@@ -167,6 +183,8 @@ export const getProgress = async (scormValues) => {
 
 }
 
+
+
 export const onLiveStart = async (liveValues) => {
     console.log(liveValues);
     try {
@@ -198,24 +216,18 @@ export const onLiveStop = async (liveValues) => {
     console.log(liveValues);
     try {
         const db = getDatabase();
-        // Önce mevcut verileri alıyoruz
         const strLessonName = liveValues.lesson_name;
         console.log(strLessonName);
-        const userRef = ref(db, 'livelessons/'+liveValues.lesson_name+'/active/');
-        const snapshot = await get(userRef);
-        const currentData = snapshot.val() || {};
-    
-        const newData = {
-          
-        };
-        console.log(newData);
-        // Oluşturduğumuz yeni verileri set fonksiyonu ile güncelliyoruz
-        set(userRef, newData);
+        const userRef = ref(db, 'livelessons/' + strLessonName + '/active');
+        
+        // "active" alanını false olarak ayarla
+        await set(userRef, false);
     } catch (error) {
         console.log(error.message);
         toast.error(error.message);
     }
 }
+
 
 export const onScormChange = async (scormValues) => {
     try {

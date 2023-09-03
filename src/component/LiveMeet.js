@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from "react-redux";
-import { onLiveStart } from '../firebase';
+import { onLiveStart, onLiveStop } from '../firebase';
 import { Button, Row, Col, Label, Input, Form, Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
 import { JitsiMeeting } from '@jitsi/react-sdk';
 
@@ -11,7 +11,24 @@ const LiveMeet = () => {
     const focusAfterClose = true;
     const [btnActive, setBtnActive] = useState(true);
 
-    const toggle = () => setOpen(!open);
+    const toggle = () => {
+        setOpen(!open);
+        if (open) {
+            // Canlı dersi sonlandır
+            onLiveStop({
+                teacher: user.displayName,
+                lesson_name: roomName,
+                active: false
+            });
+        } else {
+            // Canlı dersi başlat
+            onLiveStart({
+                teacher: user.displayName,
+                lesson_name: roomName,
+                active: true
+            });
+        }
+    }
 
     useEffect(() => {
         if (roomName.length > 3) {
@@ -64,14 +81,11 @@ const LiveMeet = () => {
                         userInfo={{
                             displayName: user.displayName
                         }}
-                        readyToClose={{ toggle }}
+                        readyToClose={(externalApi) => {
+                            toggle();
+                        }}
                         onApiReady={(externalApi) => {
-                            onLiveStart({
-                                teacher: user.displayName,
-                                lesson_name: roomName,
-                                active:true
 
-                            });
                         }}
                         getIFrameRef={(iframeRef) => { iframeRef.style.height = '100%'; }}
                     />

@@ -116,6 +116,7 @@ const VideoPlayer = (scorm) => {
         </div>
         <div className="volume-text">
           <p>Ses %{(volume * 100).toFixed(0)}</p>
+          
         </div>
       </div>
     </div>

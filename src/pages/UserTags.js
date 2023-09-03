@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { Alert, Button } from "reactstrap";
 import ModalForm from "../component/ModalForm";
 import LiveMeet from "../component/LiveMeet"
+import LiveMeetList from "../component/LiveMeetList"
 import { getUserData } from "../firebase";
 
 export default function UserTags() {
@@ -45,7 +46,8 @@ export default function UserTags() {
       </Alert>
       {userValues.role === "Öğretmen"?<LiveMeet></LiveMeet>:<p></p>}
       <ModalForm formData={formData} isOpen={modalOpen} toggle={toggleModal} onSubmit={handleSubmit} />
-      
+      <hr/>
+      <LiveMeetList></LiveMeetList>
     </>
   );
 }
